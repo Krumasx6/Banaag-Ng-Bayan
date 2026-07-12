@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 9059197025057944268}
   - component: {fileID: 8743606331005329895}
   - component: {fileID: 6895208477178537595}
+  - component: {fileID: -4558214621399951801}
   m_Layer: 0
   m_Name: Datu Sulo
   m_TagString: Player
@@ -390,6 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef368d4f931dc6e4292f56df2c256fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  cameraFollow: {fileID: 0}
   moveSpeed: 7.5
   jumpForce: 20
   doubleJumpForce: 20
@@ -462,6 +464,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61029c458fec7dc47b2ec5a12773d322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSecondary
+--- !u!114 &-4558214621399951801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3126963099006350950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783ee9b504a3a7b45b4af403b3e3766d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
+  invulnerabilityDuration: 1
+  flickerInterval: 0.1
+  spriteRenderers: []
+  movement: {fileID: 9042674765787524484}
+  combat: {fileID: 8743606331005329895}
 --- !u!1 &5214704587067790869
 GameObject:
   m_ObjectHideFlags: 0

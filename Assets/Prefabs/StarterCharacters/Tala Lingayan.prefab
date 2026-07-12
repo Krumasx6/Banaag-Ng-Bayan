@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 756290283346500691}
   - component: {fileID: 467561516658178618}
   - component: {fileID: 2494472134977336628}
+  - component: {fileID: 8594957137962410971}
   m_Layer: 0
   m_Name: Tala Lingayan
   m_TagString: Player
@@ -78,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef368d4f931dc6e4292f56df2c256fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  cameraFollow: {fileID: 0}
   moveSpeed: 7.5
   jumpForce: 20
   doubleJumpForce: 20
@@ -150,6 +152,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61029c458fec7dc47b2ec5a12773d322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSecondary
+--- !u!114 &8594957137962410971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474919295466005427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783ee9b504a3a7b45b4af403b3e3766d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
+  invulnerabilityDuration: 1
+  flickerInterval: 0.1
+  spriteRenderers: []
+  movement: {fileID: 106190810593559697}
+  combat: {fileID: 467561516658178618}
 --- !u!1 &2158345915267420928
 GameObject:
   m_ObjectHideFlags: 0
