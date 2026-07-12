@@ -3,7 +3,7 @@ public class Projectile : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float speed = 15f;
-    [SerializeField] private int damage = 10;
+    [SerializeField] private int damage = 1;
     [SerializeField] private float lifetime = 3f;
     [Header("Layers")]
     [SerializeField] private LayerMask destroyOnLayers;  // set to Ground, Wall, Enemy etc.
@@ -30,14 +30,28 @@ public class Projectile : MonoBehaviour
     // ─── Collision ───────────────────────────────────────────────────────────
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"[Projectile] Hit '{other.name}' — Tag: {other.tag}, Layer: {LayerMask.LayerToName(other.gameObject.layer)}");
+
         // Ignore other projectiles
-        if (other.CompareTag("PlayerProjectile")) return;
+        if (other.CompareTag("PlayerProjectile"))
+        {
+            Debug.Log("[Projectile] Ignored — tagged PlayerProjectile");
+            return;
+        }
         // Ignore the player
-        if (other.CompareTag("Player")) return;
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("[Projectile] Ignored — tagged Player");
+            return;
+        }
         // Check if this layer should destroy the projectile
         bool shouldDestroy = ((destroyOnLayers.value & (1 << other.gameObject.layer)) != 0);
+        Debug.Log($"[Projectile] shouldDestroy (layer in destroyOnLayers mask): {shouldDestroy}");
+
         // Always try to damage regardless of layer
         IDamageable damageable = other.GetComponent<IDamageable>();
+        Debug.Log($"[Projectile] IDamageable found: {damageable != null}");
+
         if (damageable != null)
         {
             damageable.TakeDamage(damage);

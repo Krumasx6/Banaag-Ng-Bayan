@@ -39,18 +39,8 @@ public class AimController : MonoBehaviour
         return new Vector2(x, y).normalized;
     }
     // ─── Input Readers ───────────────────────────────────────────────────────
-    private float GetHorizontalInput()
-    {
-        if (Input.GetKey(KeyCode.A)) return -1f;
-        if (Input.GetKey(KeyCode.D)) return  1f;
-        return 0f;
-    }
-    private float GetVerticalInput()
-    {
-        if (Input.GetKey(KeyCode.W)) return  1f;
-        if (Input.GetKey(KeyCode.S)) return -1f;
-        return 0f;
-    }
+    private float GetHorizontalInput() => InputManager.Instance.Horizontal;
+    private float GetVerticalInput() => InputManager.Instance.Vertical;
     // ─── Public Accessors (read by PlayerCombat) ─────────────────────────────
     public Vector2 GetAimDirection() => aimDirection;
     public bool IsAimingDown() => aimDirection.y < 0f;

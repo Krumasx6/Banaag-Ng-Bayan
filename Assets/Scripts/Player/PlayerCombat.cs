@@ -13,7 +13,7 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Weapons")]
     [SerializeField] private WeaponPrimary primaryWeapon;
-    // [SerializeField] private WeaponSecondary secondaryWeapon; // TODO: re-enable once WeaponSecondary is built
+    [SerializeField] private WeaponSecondary secondaryWeapon;
 
     [Header("Fire Points")]
     [SerializeField] private Transform firePointStanding;
@@ -28,14 +28,14 @@ public class PlayerCombat : MonoBehaviour
     private void Update()
     {
         HandlePrimary();
-        // HandleSecondary(); // TODO: re-enable once WeaponSecondary is built
+        HandleSecondary();
     }
 
     // ─── Primary Attack (J) ──────────────────────────────────────────────────
 
     private void HandlePrimary()
     {
-        if (!Input.GetKey(KeyCode.J)) return;
+        if (!InputManager.Instance.PrimaryFireHeld) return;
         if (primaryWeapon == null) return;
 
         currentWeapon = WeaponSlot.Primary;
@@ -44,12 +44,11 @@ public class PlayerCombat : MonoBehaviour
         primaryWeapon.TryFire(ResolveFireDirection());
     }
 
-    // ─── Secondary Attack (U) — disabled until WeaponSecondary exists ───────
+    // ─── Secondary Attack (U) ────────────────────────────────────────────────
 
-    /*
     private void HandleSecondary()
     {
-        if (!Input.GetKeyDown(KeyCode.U)) return;
+        if (!InputManager.Instance.SecondaryFirePressed) return;
         if (secondaryWeapon == null) return;
         if (!secondaryWeapon.IsEquipped()) return;
 
@@ -58,7 +57,6 @@ public class PlayerCombat : MonoBehaviour
         secondaryWeapon.SetFirePoint(GetFirePoint());
         secondaryWeapon.TryFire(ResolveFireDirection());
     }
-    */
 
     // ─── Fire Point Selection ────────────────────────────────────────────────
 

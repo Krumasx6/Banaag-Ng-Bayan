@@ -5,6 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
 
+    [Header("Camera Lock (Metal Slug style)")]
+    [SerializeField] private CameraFollowScript cameraFollow; // optional — leave empty to disable backtracking lock
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 7.5f;
 
@@ -68,6 +71,16 @@ public class PlayerMovement : MonoBehaviour
 
         float speed = isCrouching ? moveSpeed * crouchSpeedMultiplier : moveSpeed;
         rb.linearVelocity = new Vector2(input.x * speed, rb.linearVelocity.y);
+
+        // Block walking back past the camera's left edge (Metal Slug style lock)
+        if (cameraFollow != null)
+        {
+            float leftBound = cameraFollow.GetLeftBoundaryX();
+            if (rb.position.x < leftBound)
+            {
+                rb.position = new Vector2(leftBound, rb.position.y);
+            }
+        }
     }
 
     // ─── Movement (A/D) ──────────────────────────────────────────────────────
@@ -76,19 +89,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isDashing) return;
 
-        float moveX = 0f;
-        if (Input.GetKey(KeyCode.A)) moveX = -1f;
-        if (Input.GetKey(KeyCode.D)) moveX =  1f;
-
-        input = new Vector2(moveX, 0f);
+        input = new Vector2(InputManager.Instance.Horizontal, 0f);
     }
 
     // ─── Crouch (S) ──────────────────────────────────────────────────────────
 
     private void HandleCrouch()
     {
-        // Only crouch when grounded — S in air is aim down, not crouch
-        bool wantsCrouch = Input.GetKey(KeyCode.S) && isGrounded;
+        // Only crouch when grounded — Down in air is aim down, not crouch
+        bool wantsCrouch = InputManager.Instance.Vertical < 0f && isGrounded;
 
         if (wantsCrouch && !isCrouching)
         {
@@ -114,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJump()
     {
-        if (!Input.GetKeyDown(KeyCode.K)) return;
+        if (!InputManager.Instance.JumpPressed) return;
 
         // Stand up first if crouching, then jump
         if (isCrouching)
@@ -145,11 +154,11 @@ public class PlayerMovement : MonoBehaviour
             dashCooldownTimer -= Time.deltaTime;
 
         // Buffer the input — if pressed while dashing or on cooldown, store it
-        if (Input.GetKeyDown(KeyCode.I))
+        if (InputManager.Instance.DashPressed)
             dashBuffered = true;
 
         // Clear buffer if key was released — no phantom dash
-        if (Input.GetKeyUp(KeyCode.I))
+        if (InputManager.Instance.DashReleased)
             dashBuffered = false;
 
         if (isDashing)
