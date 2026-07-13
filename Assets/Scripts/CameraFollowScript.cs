@@ -9,6 +9,10 @@ public class CameraFollowScript : MonoBehaviour
     [Header("Smoothing")]
     [SerializeField] private float damping = 0.3f;
 
+    [Header("Vertical Follow")]
+    [SerializeField] private bool followVertical = false; // false = camera Y stays fixed, ignores jumping entirely
+    [SerializeField] private float fixedY = 0f; // used when Follow Vertical is off
+
     [Header("Forward-Only Scroll (Metal Slug style)")]
     [SerializeField] private bool lockBackwardScroll = true;
     [SerializeField] private float leftBoundaryBuffer = 0.5f; // extra room the player can walk behind the camera edge before getting blocked
@@ -39,6 +43,11 @@ public class CameraFollowScript : MonoBehaviour
         }
 
         Vector3 targetPosition = target.position + offset;
+
+        if (!followVertical)
+        {
+            targetPosition.y = fixedY;
+        }
 
         if (lockBackwardScroll)
         {
