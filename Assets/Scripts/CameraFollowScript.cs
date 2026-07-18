@@ -20,10 +20,6 @@ public class CameraFollowScript : MonoBehaviour
     [Header("Backtrack Wall")]
     [SerializeField] private Transform backtrackWall; // assign a GameObject with a BoxCollider2D (NOT trigger) — physically blocks the player
 
-    [Header("Background")]
-    [SerializeField] private Transform background; // assign your background Sprite's Transform — moves 1:1 with the camera, no parenting needed
-    [SerializeField] private float backgroundZ = 10f; // world Z for the background sprite, keep positive so it renders in front of the camera
-
     private Vector3 velocity = Vector3.zero;
     private float farthestX;
     private Camera cam;
@@ -34,7 +30,13 @@ public class CameraFollowScript : MonoBehaviour
         FindPlayer();
     }
 
-    private void FixedUpdate()
+    // Changed from FixedUpdate -> LateUpdate. FixedUpdate runs on a fixed
+    // timer independent of your actual frame rate, which caused the
+    // camera to visibly stutter/jitter on displays that render faster
+    // than the physics tick rate. LateUpdate runs once per rendered
+    // frame, after all other movement (like the player) has happened
+    // that frame — which is the correct place for camera-follow logic.
+    private void LateUpdate()
     {
         if (target == null)
         {
@@ -60,7 +62,10 @@ public class CameraFollowScript : MonoBehaviour
             transform.position, targetPosition, ref velocity, damping);
 
         UpdateBacktrackWall();
-        UpdateBackground();
+        // Background movement is now handled entirely by ParallaxCamera /
+        // ParallaxBackground / ParallaxLayer — this script no longer
+        // touches the background at all, so there's nothing left to
+        // conflict with that system.
     }
 
     private void UpdateBacktrackWall()
@@ -69,13 +74,6 @@ public class CameraFollowScript : MonoBehaviour
 
         float leftEdge = GetLeftBoundaryX();
         backtrackWall.position = new Vector3(leftEdge, backtrackWall.position.y, backtrackWall.position.z);
-    }
-
-    private void UpdateBackground()
-    {
-        if (background == null) return;
-
-        background.position = new Vector3(transform.position.x, transform.position.y, backgroundZ);
     }
 
     private void FindPlayer()

@@ -44,6 +44,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: 1Background
+    uniqueID: 4179327863
+    locked: 0
+  - name: 2Clouds
+    uniqueID: 3121660441
+    locked: 0
+  - name: 3Mountains
+    uniqueID: 1582411005
+    locked: 0
+  - name: 4Forest
+    uniqueID: 3801677321
+    locked: 0
+  - name: 5Plain
+    uniqueID: 3375094047
+    locked: 0
+  - name: Player
+    uniqueID: 3354828111
+    locked: 0
+  - name: 6Plain
+    uniqueID: 2667313999
+    locked: 0
+  - name: 7Grass
+    uniqueID: 2466487895
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []
