@@ -1,16 +1,24 @@
 using UnityEngine;
- 
-[ExecuteInEditMode]
+
 public class ParallaxLayer : MonoBehaviour
 {
-    public float parallaxFactor;
- 
-    public void Move(float delta)
+    Material mat;
+    float distance;
+
+    [Range(0f, 0.5f)]
+    public float speed = 0.2f;
+
+    void Start()
     {
-        Vector3 newPos = transform.localPosition;
-        newPos.x -= delta * parallaxFactor;
- 
-        transform.localPosition = newPos;
+        mat = GetComponent<Renderer>().material;
     }
- 
+
+    void Update()
+    {
+
+        distance += Time.deltaTime * speed;
+        mat.SetTextureOffset("_MainTex", Vector2.right * distance);
+
+    }
+
 }
