@@ -18,7 +18,7 @@ TagManager:
   - whatIsEnemy
   - PlayerProjectile
   - EnemyProjectile
-  - whatIsEnemy
+  - BacktrackWall
   - 
   - 
   - 
@@ -59,6 +59,18 @@ TagManager:
   - name: 5Plain
     uniqueID: 3375094047
     locked: 0
+  - name: Effects
+    uniqueID: 550646409
+    locked: 0
+  - name: Grenade
+    uniqueID: 387501967
+    locked: 0
+  - name: Bullet
+    uniqueID: 2616056543
+    locked: 0
+  - name: Enemy
+    uniqueID: 476956145
+    locked: 0
   - name: Player
     uniqueID: 3354828111
     locked: 0
@@ -67,6 +79,9 @@ TagManager:
     locked: 0
   - name: 7Grass
     uniqueID: 2466487895
+    locked: 0
+  - name: TutorialUI
+    uniqueID: 3999074271
     locked: 0
   m_RenderingLayers:
   - Default
