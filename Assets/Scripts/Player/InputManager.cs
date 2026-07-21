@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     private bool touchDashPressed;
     private bool touchDashReleased;
     private bool touchSecondaryPressed;
+    private bool touchSpecialPressed;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class InputManager : MonoBehaviour
         touchDashPressed = false;
         touchDashReleased = false;
         touchSecondaryPressed = false;
+        touchSpecialPressed = false;
     }
 
     // ─── Public read API — this is what gameplay scripts call ──────────────
@@ -66,6 +68,7 @@ public class InputManager : MonoBehaviour
     public bool DashReleased => Input.GetKeyUp(KeyCode.I) || touchDashReleased;
     public bool PrimaryFireHeld => Input.GetKey(KeyCode.J) || touchPrimaryHeld;
     public bool SecondaryFirePressed => Input.GetKeyDown(KeyCode.U) || touchSecondaryPressed;
+    public bool SpecialPressed => Input.GetKeyDown(KeyCode.L) || touchSpecialPressed;
 
     // ─── Called by on-screen touch UI scripts (build these when adding mobile controls) ───
 
@@ -80,4 +83,5 @@ public class InputManager : MonoBehaviour
     public void TriggerDashPressed() => touchDashPressed = true;
     public void TriggerDashReleased() => touchDashReleased = true;
     public void TriggerSecondaryPressed() => touchSecondaryPressed = true;
+    public void TriggerSpecialPressed() => touchSpecialPressed = true;
 }
