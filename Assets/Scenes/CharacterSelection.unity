@@ -503,7 +503,7 @@ MonoBehaviour:
   selectedCharacter: Datu Sulo
   characters:
   - characterName: Datu Sulo
-    prefab: {fileID: 3126963099006350950, guid: d8035e9145e305345b74bddcd0b8755b, type: 3}
+    prefab: {fileID: 3126963099006350950, guid: d4afe2a5b93512b4ea930e5e33072e3f, type: 3}
   - characterName: Tala Lingayan
     prefab: {fileID: 1474919295466005427, guid: 4ca6a3b16e3742a48af7924ee291b5ae, type: 3}
   - characterName: Lakan Yano

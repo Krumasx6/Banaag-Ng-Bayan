@@ -3,7 +3,16 @@ using UnityEngine;
 public class PlayerSpecial : MonoBehaviour
 {
     [Header("Datu Sulo — Jet Strike Sequence")]
+    [Tooltip("Optional manual assignment. If left empty, it will be auto-found on this object or its children at runtime.")]
     [SerializeField] private DatuSuloJetSequence jetSequence;
+
+    private void Awake()
+    {
+        // Auto-resolve so this works even inside a prefab, where you can't
+        // drag in a reference from outside the prefab's own hierarchy.
+        if (jetSequence == null)
+            jetSequence = GetComponentInChildren<DatuSuloJetSequence>(true);
+    }
 
     private void Update()
     {

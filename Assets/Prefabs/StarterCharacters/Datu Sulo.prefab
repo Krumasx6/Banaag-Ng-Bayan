@@ -69,6 +69,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1053999803410485714}
   - {fileID: 3095100234563127477}
   - {fileID: 7759691563929343850}
   m_Father: {fileID: 0}
@@ -392,6 +393,64 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.98947525, y: 2.0763574}
   m_EdgeRadius: 0
+--- !u!1 &4014238124122646028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1053999803410485714}
+  - component: {fileID: 4590912875700058707}
+  m_Layer: 0
+  m_Name: DatuSuloAbility
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1053999803410485714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4014238124122646028}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.417751, y: -1.0275301, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6762715154725970989}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4590912875700058707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4014238124122646028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d42c26440d07447934b4b111055f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DatuSuloJetSequence
+  jetPrefab: {fileID: 8761215437418887055, guid: 271fa11f64ecf114583b6170087a6f5a, type: 3}
+  jetCount: 3
+  jetSpawnHeight: 7
+  delayBetweenJets: 0
+  explosionEffectPrefab: {fileID: 8987408496921093574, guid: 5a761fae3f3aade44a620f7db6c61786, type: 3}
+  explosionCount: 6
+  damage: 999
+  damageLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  explosionEffectLifetime: 1
+  cameraShake: {fileID: 0}
+  shakeDuration: 0.5
+  shakeMagnitude: 1
 --- !u!1 &5248559486140878852
 GameObject:
   m_ObjectHideFlags: 0

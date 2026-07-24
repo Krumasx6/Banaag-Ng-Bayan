@@ -44,20 +44,26 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: 1Background
+  - name: 1
     uniqueID: 4179327863
     locked: 0
-  - name: 2Clouds
+  - name: 2
     uniqueID: 3121660441
     locked: 0
-  - name: 3Mountains
+  - name: 3
     uniqueID: 1582411005
     locked: 0
-  - name: 4Forest
+  - name: 4
     uniqueID: 3801677321
     locked: 0
-  - name: 5Plain
+  - name: 5
     uniqueID: 3375094047
+    locked: 0
+  - name: 6
+    uniqueID: 1636222835
+    locked: 0
+  - name: 7
+    uniqueID: 919857953
     locked: 0
   - name: TutorialUI
     uniqueID: 3999074271
@@ -77,7 +83,7 @@ TagManager:
   - name: 6Plain
     uniqueID: 2667313999
     locked: 0
-  - name: 7Grass
+  - name: 8
     uniqueID: 2466487895
     locked: 0
   m_RenderingLayers:

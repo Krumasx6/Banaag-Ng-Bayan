@@ -17,9 +17,14 @@ public class DatuSuloJetSequence : MonoBehaviour
     [SerializeField] private float explosionEffectLifetime = 1f;
 
     [Header("Camera Shake")]
-    [SerializeField] private CameraShake cameraShake;
     [SerializeField] private float shakeDuration = 0.5f;
     [SerializeField] private float shakeMagnitude = 0.3f;
+
+    // Not exposed in the Inspector: prefab assets can't hold references to
+    // objects that only live in a scene (like a camera's CameraShake component).
+    // We look it up at runtime instead, so this script works whether it's on
+    // a scene object OR on a prefab (like your Datu Sulo character).
+    private CameraShake cameraShake;
 
     public void PlaySequence()
     {
@@ -28,6 +33,8 @@ public class DatuSuloJetSequence : MonoBehaviour
 
     private IEnumerator RunSequence()
     {
+        ResolveCameraShake();
+
         Time.timeScale = 0f; // freeze gameplay — jets still move since JetStrike uses unscaled time
 
         for (int i = 0; i < jetCount; i++)
@@ -50,6 +57,18 @@ public class DatuSuloJetSequence : MonoBehaviour
         yield return new WaitForSecondsRealtime(shakeDuration);
 
         Time.timeScale = 1f; // resume gameplay
+    }
+
+    private void ResolveCameraShake()
+    {
+        if (cameraShake != null) return;
+
+        if (Camera.main != null)
+            cameraShake = Camera.main.GetComponent<CameraShake>();
+
+        // Fallback in case CameraShake isn't on the main camera
+        if (cameraShake == null)
+            cameraShake = FindObjectOfType<CameraShake>();
     }
 
     private void TriggerFinalExplosion()
