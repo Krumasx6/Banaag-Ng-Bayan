@@ -128,5 +128,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937c4ea2e2711ae4a8c61590f9315a4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JetStrike
-  flySpeed: 100
+  flySpeed: 150
   edgeBuffer: 2

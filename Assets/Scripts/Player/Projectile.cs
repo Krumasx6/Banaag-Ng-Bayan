@@ -70,7 +70,7 @@ public class Projectile : MonoBehaviour
     private void AlignToDirection()
     {
         if (direction == Vector2.zero) return;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
     private void SpawnHitEffect()
